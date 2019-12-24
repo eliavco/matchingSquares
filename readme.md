@@ -1,0 +1,1 @@
+This is an elegant solution to the popular brainteaser
