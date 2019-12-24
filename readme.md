@@ -1,1 +1,1 @@
-This is an elegant solution to the popular brainteaser
+This is an elegant solution to the popular brain teaser

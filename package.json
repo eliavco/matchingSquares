@@ -1,0 +1,19 @@
+{
+  "name": "matching_squares",
+  "version": "1.0.0",
+  "description": "An elegant solution to the popular brain teaser",
+  "main": "index.js",
+  "scripts": {
+    "run": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliavco/matchingSquares.git"
+  },
+  "author": "Eliav Cohen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliavco/matchingSquares/issues"
+  },
+  "homepage": "https://github.com/eliavco/matchingSquares#readme"
+}
