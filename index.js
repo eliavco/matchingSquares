@@ -4,11 +4,13 @@ const {
   checkNewCard,
   checkNewCardForThreeCols,
   recreateCards,
-  decreateCards
+  decreateCards,
+  halfCreate
 } = require("./util");
-let { cards } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+let { cards, columns } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+if (typeof cards !== 'object') cards = halfCreate(cards);
 cards = decreateCards(cards);
-let temporary = [];
+let temporary = cards;
 
 const newCard = ["1a", "2b", "1a", "2b"];
 const newArr = [
@@ -30,6 +32,6 @@ const newArr = [
 // Make sure that from here down temporary is full with an array (9 in len) full of arrays (4 in len)
 temporary = recreateCards(temporary);
 for (key in temporary) {
-    setInFinal(temporary[key], key);
+    setInFinal(temporary[key], key, columns);
 }
 console.log(final);

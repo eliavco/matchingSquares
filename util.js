@@ -66,11 +66,20 @@ const decreateCards = (cards) => {
     return cards;
 };
 
+const halfCreate = (cards) => {
+    let obj = {};
+    cards.forEach((card, i) => {
+      obj[i + 1] = card;
+    });
+    return obj;
+};
+
 module.exports = {
   checkNewCard,
   checkNewCardForThreeCols,
   recreateCards,
-  decreateCards
+  decreateCards,
+  halfCreate
 };
 
 // const swapCards = (obj, a, b) => {

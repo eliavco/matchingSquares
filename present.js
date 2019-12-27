@@ -1,10 +1,11 @@
 const fs = require("fs");
-const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
+const { dictionary } = JSON.parse(fs.readFileSync("data.json", "utf-8"));
 
 const translateLoc = (loc, cols) => {
   let string = "";
-  const row = Math.floor(loc / cols); // 11 / 5 = 2
-  const col = loc - row;
+  loc--;
+  const row = Math.floor(loc / cols) + 1; // (11 / 3) + 1 = 3 + 1 = 4
+  const col = loc - cols*(row-1) + 1; // 11 - 3*(4-1) = 2
 
   if (row == 1) {string += "1st Row: "}
   else if (row == 2) {string += "2nd Row: "}
@@ -20,7 +21,6 @@ const translateLoc = (loc, cols) => {
 };
 
 const translate = card => {
-  const dictionary = data.dictionary;
   const characters = dictionary.characters;
   const sides = dictionary.sides;
 
@@ -36,9 +36,9 @@ const translate = card => {
 
 const final = {};
 
-const setInFinal = (card, loc) => {
+const setInFinal = (card, loc, col) => {
   card = translate(card);
-  loc = translateLoc(loc);
+  loc = translateLoc(loc, col);
   final[loc] = card;
 };
 
