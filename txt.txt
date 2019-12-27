@@ -109,3 +109,11 @@ const newArr = [
 // console.log(checkNewCardForThreeCols(
 //     newArr, newCard
 // ));
+
+
+// const swapCards = (obj, a, b) => {
+//     const temp = obj[a];
+//     obj[a] = obj[b];
+//     obj[b] = temp;
+//     return obj;
+// };

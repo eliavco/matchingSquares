@@ -1,26 +1,21 @@
 const fs = require('fs');
-const { translate, translateLoc, setInFinal, final } = require('./present');
-const {
-  checkNewCard,
-  checkNewCardForThreeCols,
-  recreateCards,
-  decreateCards,
-  halfCreate,
-  wiz
-} = require("./util");
-const { main } = require("./process");
-let { cards, columns, wizard } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+const { setInFinal, final } = require('./present');
+const { recreateCards, decreateCards, halfCreate, wiz } = require('./util');
+const { main } = require('./process');
+
+const { columns, wizard } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+let { cards } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+
 if (typeof cards !== 'object') cards = halfCreate(cards);
-cards = decreateCards(cards);
+cards = recreateCards(main(decreateCards(cards), columns));
 
-let temporary = main(cards);
+Object.keys(cards).forEach(key => {
+    setInFinal(cards[key], key, columns);
+});
 
-temporary = recreateCards(temporary);
-for (key in temporary) {
-    setInFinal(temporary[key], key, columns);
-}
 if (wizard) {
-	wiz(final);
+    wiz(final);
 } else {
-	console.log(final);
+    // eslint-disable-next-line no-console
+    console.log(final);
 }

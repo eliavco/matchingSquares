@@ -1,22 +1,33 @@
 {
-  "name": "matching_squares",
-  "version": "1.0.0",
-  "description": "An elegant solution to the popular brain teaser",
-  "main": "index.js",
-  "scripts": {
-    "run": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eliavco/matchingSquares.git"
-  },
-  "author": "Eliav Cohen",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eliavco/matchingSquares/issues"
-  },
-  "homepage": "https://github.com/eliavco/matchingSquares#readme",
-  "dependencies": {
-    "readline-sync": "^1.4.10"
-  }
+	"name": "matching_squares",
+	"version": "1.0.0",
+	"description": "An elegant solution to the popular brain teaser",
+	"main": "index.js",
+	"scripts": {
+		"run": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/eliavco/matchingSquares.git"
+	},
+	"author": "Eliav Cohen",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/eliavco/matchingSquares/issues"
+	},
+	"homepage": "https://github.com/eliavco/matchingSquares#readme",
+	"dependencies": {
+		"readline-sync": "^1.4.10"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb": "^17.1.1",
+		"eslint-config-prettier": "^6.0.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-prettier": "^3.1.0",
+		"eslint-plugin-react": "^7.14.3",
+		"prettier": "^1.18.2"
+	}
 }
