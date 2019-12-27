@@ -2,22 +2,23 @@ const fs = require("fs");
 const { dictionary } = JSON.parse(fs.readFileSync("data.json", "utf-8"));
 
 const translateLoc = (loc, cols) => {
-  let string = "";
+  let stringA = "";
+  let stringB = "";
   loc--;
   const row = Math.floor(loc / cols) + 1; // (11 / 3) + 1 = 3 + 1 = 4
   const col = loc - cols*(row-1) + 1; // 11 - 3*(4-1) = 2
 
-  if (row == 1) {string += "1st Row: "}
-  else if (row == 2) {string += "2nd Row: "}
-  else if (row == 3) {string += "3rd Row: "}
-  else {string += `${row}th Row: `};
+  if (row == 1) {stringA += "1st Row"}
+  else if (row == 2) {stringA += "2nd Row"}
+  else if (row == 3) {stringA += "3rd Row"}
+  else {stringA += `${row}th Row`};
 
-  if (col == 1) {string += "1st Column"}
-  else if (col == 2) {string += "2nd Column"}
-  else if (col == 3) {string += "3rd Column"}
-  else {string += `${col}th Column`};
+  if (col == 1) {stringB += "1st Column"}
+  else if (col == 2) {stringB += "2nd Column"}
+  else if (col == 3) {stringB += "3rd Column"}
+  else {stringB += `${col}th Column`};
 
-  return string;
+  return [stringA, stringB];
 };
 
 const translate = card => {
@@ -39,7 +40,8 @@ const final = {};
 const setInFinal = (card, loc, col) => {
   card = translate(card);
   loc = translateLoc(loc, col);
-  final[loc] = card;
+  if (final[loc[0]] == undefined) final[loc[0]] = {};
+  final[loc[0]][loc[1]] = card;
 };
 
 module.exports = {

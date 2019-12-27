@@ -1,4 +1,5 @@
 const fs = require('fs');
+var readlineSync = require("readline-sync");
 const { translate, translateLoc, setInFinal, final } = require('./present');
 const {
   checkNewCard,
@@ -34,4 +35,9 @@ temporary = recreateCards(temporary);
 for (key in temporary) {
     setInFinal(temporary[key], key, columns);
 }
-console.log(final);
+while(true) {
+    const ans = readlineSync.question("Hi! Which part are you looking for? q or r\n");
+    if (ans == 'q') break;
+    if (final[r * 1]) final ;
+}
+// console.log(final);

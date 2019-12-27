@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/eliavco/matchingSquares/issues"
   },
-  "homepage": "https://github.com/eliavco/matchingSquares#readme"
+  "homepage": "https://github.com/eliavco/matchingSquares#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
