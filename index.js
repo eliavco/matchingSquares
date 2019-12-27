@@ -10,12 +10,12 @@ if (typeof cards !== 'object') cards = halfCreate(cards);
 cards = recreateCards(main(decreateCards(cards), columns));
 
 Object.keys(cards).forEach(key => {
-    setInFinal(cards[key], key, columns);
+	setInFinal(cards[key], key, columns);
 });
 
 if (wizard) {
-    wiz(final);
+	wiz(final);
 } else {
-    // eslint-disable-next-line no-console
-    console.log(final);
+	// eslint-disable-next-line no-console
+	console.log(final);
 }
