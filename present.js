@@ -1,16 +1,21 @@
 const fs = require("fs");
 const data = JSON.parse(fs.readFileSync("data.json", "utf-8"));
 
-const translateLoc = loc => {
+const translateLoc = (loc, cols) => {
   let string = "";
+  const row = Math.floor(loc / cols); // 11 / 5 = 2
+  const col = loc - row;
 
-  if (loc == 1 || loc == 2 || loc == 3) string += "1st Row: ";
-  if (loc == 4 || loc == 5 || loc == 6) string += "2nd Row: ";
-  if (loc == 7 || loc == 8 || loc == 9) string += "3rd Row: ";
+  if (row == 1) {string += "1st Row: "}
+  else if (row == 2) {string += "2nd Row: "}
+  else if (row == 3) {string += "3rd Row: "}
+  else {string += `${row}th Row: `};
 
-  if (loc == 1 || loc == 4 || loc == 7) string += "1st Column";
-  if (loc == 2 || loc == 5 || loc == 8) string += "2nd Column";
-  if (loc == 3 || loc == 6 || loc == 9) string += "3rd Column";
+  if (col == 1) {string += "1st Column"}
+  else if (col == 2) {string += "2nd Column"}
+  else if (col == 3) {string += "3rd Column"}
+  else {string += `${col}th Column`};
+
   return string;
 };
 
