@@ -13,6 +13,7 @@
     },
 
     "columns": 3,
+    "wizard": false,
 
     "cards": [
 

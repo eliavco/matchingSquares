@@ -1,3 +1,5 @@
+var readlineSync = require("readline-sync");
+
 const checkNewCard = (arr, newCard, cols) => {
   const newArr = arr;
   const last = cols * Math.floor(arr.length / cols);
@@ -44,17 +46,21 @@ const checkNewCard = (arr, newCard, cols) => {
 const checkNewCardForThreeCols = (a, b) => checkNewCard(a, b, 3);
 
 const recreateCards = (cards) => {
-    let obj = {};
-    let inObj;
-    let sides = ['top', 'right', 'bottom', 'left'];
-    cards.forEach((card, i) => {
-        inObj = {};
-        card.forEach((side, i) => {
-            inObj[sides[i]] = side;
-        });
-        obj[i + 1] = inObj;
-    });
-    return obj;
+	try {
+		let obj = {};
+		let inObj;
+		let sides = ['top', 'right', 'bottom', 'left'];
+		cards.forEach((card, i) => {
+			inObj = {};
+			card.forEach((side, i) => {
+				inObj[sides[i]] = side;
+			});
+			obj[i + 1] = inObj;
+		});
+		return obj;
+	} catch {
+		return {};
+	}
 };
 
 const decreateCards = (cards) => {
@@ -74,12 +80,40 @@ const halfCreate = (cards) => {
     return obj;
 };
 
+const wiz = (fi) => {
+  while (true) {
+    const ans = readlineSync.question(
+      "Hi! Which part are you looking for? q, all or [row:col]\n"
+    );
+    if (ans == "q") break;
+    if (ans == "all") {
+      console.log(fi);
+      continue;
+    }
+    const f = decreateCards(fi);
+    if (
+      ans.includes(":") &&
+      f[ans.slice(0, ans.indexOf(":")) * 1 - 1] &&
+      f[ans.slice(0, ans.indexOf(":")) * 1 - 1][
+        ans.slice(ans.indexOf(":") + 1) * 1 - 1
+      ]
+    ) {
+      console.log(
+        f[ans.slice(0, ans.indexOf(":")) * 1 - 1][
+          ans.slice(ans.indexOf(":") + 1) * 1 - 1
+        ]
+      );
+    }
+  }
+}
+
 module.exports = {
   checkNewCard,
   checkNewCardForThreeCols,
   recreateCards,
   decreateCards,
-  halfCreate
+  halfCreate,
+  wiz
 };
 
 // const swapCards = (obj, a, b) => {

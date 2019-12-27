@@ -1,43 +1,26 @@
 const fs = require('fs');
-var readlineSync = require("readline-sync");
 const { translate, translateLoc, setInFinal, final } = require('./present');
 const {
   checkNewCard,
   checkNewCardForThreeCols,
   recreateCards,
   decreateCards,
-  halfCreate
+  halfCreate,
+  wiz
 } = require("./util");
-let { cards, columns } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+const { main } = require("./process");
+let { cards, columns, wizard } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
 if (typeof cards !== 'object') cards = halfCreate(cards);
 cards = decreateCards(cards);
-let temporary = cards;
 
-const newCard = ["1a", "2b", "1a", "2b"];
-const newArr = [
-  [0, 1, 2, 3],
-  [1, 1, 2, 3],
-  [2, 1, 2, 3],
-  [3, 1, 2, 3],
-  [4, 1, 2, 3],
-  [5, 1, 2, 3],
-  [7, 1, 2, 3],
-  ["3b", "1a", "2a", "3b"],
-  ["1a", "4b", "1b", "1b"],
-  ["1a", "2a", "2b", "3b"]
-];
-// console.log(checkNewCardForThreeCols(
-//     newArr, newCard
-// ));
+let temporary = main(cards);
 
-// Make sure that from here down temporary is full with an array (9 in len) full of arrays (4 in len)
 temporary = recreateCards(temporary);
 for (key in temporary) {
     setInFinal(temporary[key], key, columns);
 }
-while(true) {
-    const ans = readlineSync.question("Hi! Which part are you looking for? q or r\n");
-    if (ans == 'q') break;
-    if (final[r * 1]) final ;
+if (wizard) {
+	wiz(final);
+} else {
+	console.log(final);
 }
-// console.log(final);
